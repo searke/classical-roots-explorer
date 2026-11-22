@@ -36,6 +36,10 @@ python3 scripts/build.py       # writes the site into docs/
 
 ## Data & license
 
-Word data from the [English Wiktionary](https://en.wiktionary.org/) (CC BY-SA 4.0), via
-[kaikki.org](https://kaikki.org/)'s Wiktextract dumps. Word frequencies from
-[wordfreq](https://github.com/rspeer/wordfreq).
+- **Word data:** adapted from the [English Wiktionary](https://en.wiktionary.org/) (CC BY-SA 4.0), via
+  [kaikki.org](https://kaikki.org/)'s Wiktextract dumps (Tatu Ylonen, LREC 2022).
+- **Word frequencies:** [wordfreq](https://github.com/rspeer/wordfreq) by Robyn Speer (data CC BY-SA 4.0).
+- **The generated site** (`docs/`) is shared under CC BY-SA 4.0: see `LICENSE-CONTENT.md` and `docs/about.html`.
+- **The code** (`scripts/`) is under the MIT licence: see `LICENSE`.
+- Every word and root links back to Wiktionary, including the "English words prefixed/suffixed with …"
+  category lists.

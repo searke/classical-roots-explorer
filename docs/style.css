@@ -62,6 +62,9 @@ background:var(--card);color:var(--fg);border-radius:99px;padding:2px 10px}
 .pills{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
 .pill2{display:inline-block;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:0 10px;font-size:13px;font-weight:600}
 .pill2:hover{border-color:var(--accent)}
+.ext{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;margin-top:6px}
+.ext a{color:var(--accent);border-bottom:1px dotted var(--accent)}
+.big-ext{font-size:14px}
 .lvlpill{display:inline-block;color:#fff;background:var(--lc);border-radius:99px;padding:0 10px;font-size:13px;font-weight:600}
 .hoods{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;margin-top:16px}
 .hood{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:block}
