@@ -7,23 +7,26 @@ with the same design and graph tools.
 - **A–Z** (`docs/index.html`): every root, coloured by how common its best-known word is.
 - **Root pages** (`docs/r/<root>.html`): every word the root helps build, grouped by the spelling it takes
   (*tele- / telo-*, *-graph / -graphy*). Every other root in a word links to its own page.
-- **Root words and families**: a word is listed when it's built from at least two roots
-  (*telephone*, *photograph*, *independent*). Obvious derivations are folded under it
-  (*photographer, photography* under *photograph*).
+- **Words and families**: every word containing a root is listed under it, including single-root words
+  (*generate*, *gene* and *hydrogen* all appear under *gen*). Obvious derivations are folded under
+  their word (*generation, generator* under *generate*).
 - **Neighbourhoods, Core and Map**: roots are nodes and words link their roots; Louvain community
   detection finds the neighbourhoods (names hand-picked in `scripts/graph.py`). Very common small
   prefixes (*in-, de-, con-*…) are left out of the graph because they attach to everything.
 
-## How words are split
+## How words get their roots
 
-1. **Wiktionary breakdowns.** Most words come straight from Wiktionary's etymology templates
-   ("from *tele-* + *-phone*").
-2. **Automatic splits.** Latin/Greek borrowings that Wiktionary doesn't break down (*television*, *transport*)
-   are split using pieces Wiktionary already knows. These are marked *auto-split* on the site.
-3. **Origin.** A root is Greek or Latin according to its Wiktionary etymology; Latin words borrowed from
-   Greek count as Greek.
+1. **Roots** are Greek/Latin prefixes, suffixes and combining forms found in Wiktionary's word
+   breakdowns (*tele-*, *-graph*, *bio-*), plus about 150 well-known Latin/Greek stems listed by hand in
+   `scripts/roots_list.py` (*dict*, *duc*, *ject*, *port*, *struct*…). Spellings of one root are grouped:
+   *-gen, -genic, geno-, -genesis*; *ad-, ac-, af-, ap-…*
+2. **Wiktionary breakdowns** ("from *tele-* + *-phone*") are followed first, through English words.
+3. **Otherwise** a Latin/Greek borrowing is matched against the roots (optional prefixes + stems), and the
+   match only counts if the word's own etymology confirms it: *predict* ← Latin *praedīcō* contains *dic*;
+   *agenda* ← Latin *agō* does not contain *gen*. These are marked *auto-split* on the site.
+4. **Origin**: a root is Greek or Latin according to Wiktionary; Latin words borrowed from Greek count as Greek.
 
-Expect some mistakes: the splitting is automatic and Wiktionary isn't perfectly consistent.
+Expect some mistakes: the matching is automatic and Wiktionary isn't perfectly consistent.
 
 ## Build
 
