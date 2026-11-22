@@ -210,7 +210,7 @@ def build():
         guess = ' <span class="guess" title="split worked out automatically, not taken from Wiktionary">auto-split</span>' \
             if v["guessed"] else ""
         fam = f'<div class="fam"><b>also:</b> {esc(", ".join(v["family"]))}</div>' if v["family"] else ""
-        gl = "; ".join(v["gloss"])[:180]
+        gl = "; ".join(dict.fromkeys(v["gloss"]))[:180]
         return (f'<li class="lv{v["lvl"]}" data-lv="{v["lvl"]}"><span class="badge">{LEVELS[v["lvl"]][0]}</span>'
                 f'<div class="w">{esc(v["w"])}</div><div class="parts">{"".join(bits)}{hybrid}{guess}</div>'
                 f'<div class="g">{esc(gl)}</div>{fam}</li>')
@@ -232,9 +232,12 @@ def build():
     # ---- root pages
     for k, r in roots.items():
         by_form = defaultdict(list)
+        shown = {}                       # "graphy" and "-graphy" are the same spelling
+        for f in r["forms"]:
+            shown.setdefault(f.strip("-"), f)
         for w in r["words"]:
             form = next((p for p, kk in words[w]["parts"] if kk == k), r["forms"][0])
-            by_form[form].append(words[w])
+            by_form[shown.get(form.strip("-"), form)].append(words[w])
         forms = sorted(by_form, key=lambda f: -len(by_form[f]))
         tags = "".join(f'<a class="form-tag" href="#f-{esc(f)}">{esc(f)}</a>' for f in forms)
         lv = r["lvl"]
